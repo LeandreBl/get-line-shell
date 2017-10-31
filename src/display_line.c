@@ -21,7 +21,7 @@ static void		wipedout_line(gls_t *gls)
 
   if (ioctl(1, TIOCGWINSZ, &win) < 0)
     return;
-  i = my_strlen(gls->line);
+  i = my_strlen(gls->line) + 15;
   while (i < win.ws_col)
   {
     write(1, " ", 1);

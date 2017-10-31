@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2017
 ** getlineshell
 ** File description:
-** shortcuts alt+L ctrl+L ...
+** shortcuts ctrl+l ctrl+d ...
 */
 
 #include "getlineshell.h"
@@ -16,7 +16,7 @@ int		ctrl_l(__attribute__ ((unused)) gls_t *gls)
   return (DONE);
 }
 
-int		ctrl_d(__attribute__ ((unused)) gls_t *gls)
+int		ctrl_d(gls_t *gls)
 {
   int		len;
 
@@ -35,10 +35,10 @@ int		kbackspace(gls_t *gls)
 {
   if (gls->curset.cursor > 0)
   {
+    shift_left(gls->line + gls->curset.cursor - 1, 1);
+    if (gls->line[gls->curset.cursor - 1] < 0)
+      shift_left(gls->line + gls->curset.cursor - 1, 1);
     --gls->curset.cursor;
-    if (gls->line[gls->curset.cursor] < 0)
-      shift_right(gls->line, 1);
-    shift_right(gls->line , 1);
   }
   return (DONE);
 }
