@@ -15,6 +15,10 @@ LIB		= -L./lib/C -lmy
 
 SRCS		= src/main.c
 SRCS		+= src/getlineshell.c
+SRCS		+= src/display_line.c
+SRCS		+= src/set_getlineshell.c
+SRCS		+= src/builtins.c
+SRCS		+= src/shortcuts.c
 
 OBJ		= $(SRCS:.c=.o)
 

@@ -12,7 +12,7 @@
 # define COLORS_H_
 
 # define CLEAR "\033[3;"
-# define CLEARTOP	"\033[3;J\033[H\033[2J$"
+# define CLEARTOP	"\033[3;J\033[H\033[2J"
 # define RESET   "\033[0m"
 # define BLACK   "\033[30m"
 # define RED     "\033[31m"

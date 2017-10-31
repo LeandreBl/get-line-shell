@@ -15,8 +15,10 @@ char				*add_char(char *src, va_list *va)
   char				c;
 
   c = (char)va_arg(*va, int);
-  src = my_frealloc(src, 2);
-  my_strncat(src, &c, 1);
+  src = insert(src, "x", my_strlen(src));
+  if (src == NULL)
+    return (NULL);
+  src[my_strlen(src) - 1] = c;
   return (src);
 }
 
@@ -34,9 +36,9 @@ char				*add_str(char *src, va_list *va)
   char				*str;
 
   str = va_arg(*va, char *);
-  src = my_frealloc(src, my_strlen(str) + 1);
-  my_strcat(src, str);
-  return (src);
+  if (str == NULL)
+    return (src);
+  return (insert(src, str, my_strlen(src)));
 }
 
 char				*add_str_free(char *src, va_list *va)
@@ -44,8 +46,7 @@ char				*add_str_free(char *src, va_list *va)
   char				*str;
 
   str = va_arg(*va, char *);
-  src = my_frealloc(src, my_strlen(str) + 1);
-  my_strcat(src, str);
+  src = insert(src, str, my_strlen(src));
   sfree(&str);
   return (src);
 }

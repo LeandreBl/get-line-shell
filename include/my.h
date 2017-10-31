@@ -5,7 +5,7 @@
 ** Login   <lblanchard@epitech.net>
 ** 
 ** Started on  Thu Oct 13 09:19:01 2016 Leandre Blanchard
-** Last update Mon Oct 30 23:25:41 2017 Léandre Blanchard
+** Last update Wed Oct 25 21:04:35 2017 Léandre Blanchard
 */
 
 #ifndef MY_H_
@@ -130,7 +130,7 @@ char	*catalloc(const char *format, ...);
 ** Sort the given [tab] in ascending order using strcmp
 ** Returns 0
 */
-int	sort_tab(char **tabptr);
+int	sort_tab(char **tab);
 
 /* 
 ** Load all filenames that are into the [dirname] directory
@@ -162,7 +162,7 @@ char	*insert(char *src, const char *str, int pos);
 ** the same buffer that you are retrieving them from
 ** Returns -1 on error
 */
-int	memcopy(const void *from, void *to, int size);
+int	memcopy(void *to, const void *from, int size);
 
 /*
 ** Uses Xclip and system call to add the given [str] ptr into your clipboard
@@ -196,13 +196,13 @@ void	free_my(void);
 int	display_inside(const void *buf, const char *format, int size);
 
 /* Returns the largest strlen(tab[i]) found into the NULL terminated tab */
-int	max_len(char **tabptr);
+int	max_len(char **tab);
 
 /* 
 ** Same as strdup but for a tab, it is NULL terminated
 ** Returns NULL on error
 */
-char	**tabdup(char **tabptr);
+char	**tabdup(char **tab);
 
 /*
 ** Returns an allocated tab containing the [pathname] file
@@ -223,7 +223,7 @@ int	file_size(const char *pathname);
 ** tab[0] became tab[LAST] ...
 ** Returns -1 on error
 */
-int	revtab(char **tabptr);
+int	revtab(char **tab);
 
 /*
 ** Frees the given tab ptr and store the previous values inside a new
@@ -234,16 +234,7 @@ int	revtab(char **tabptr);
 ** The tab is NULL terminated
 ** Returns NULL on error
 */
-char	**tab_append(char **tabptr, char *add);
-
-/*
-** This function remove the char * at tab[index] and frees it
-** without letting a blank by moving the other indexes
-** This function does not allocate memory
-** return -1 on Error
-**
-*/
-int	tab_remove(char **tabptr, int index);
+char	**tab_append(char **tab, char *add);
 
 /*
 ** Returns 1 if the end of the [s] string match the
@@ -257,7 +248,7 @@ int	end_with(const char *s, const char *end);
 ** more space to store more pointers,
 ** Return NULL on error
 */
-char	**tab_realloc(char **tabptr, int add);
+char	**tab_realloc(char **tab, int add);
 
 /*
 ** Same as file_data but with a fd
@@ -332,12 +323,12 @@ int	my_intlen(int);
 void	free_tab(char ***tabaddr);
 
 /*
-** Allocate a tab with [nlines] lines of [nlength] size each one
+** Allocate a tab with [lines] lines of [length] size each one
 ** They are all allocated and each byte is set to 0
 ** The tab is NULL terminated
 ** Returns NULL on error
 */
-char	**my_alloc_tab(int nlines, int nlength);
+char	**my_alloc_tab(int lines, int length);
 
 /*
 ** man 3 atof
@@ -395,7 +386,7 @@ int	my_strncmp(const char *, const char *, int);
 int	my_strcat(char *dest, const char *src);
 
 /* NULL proof strncat */
-int	my_strncat(char *dest, const char *src, int n);
+char	*my_strncat(char *dest, const char *src, int n);
 
 /* man 3 strdup */
 char	*my_strdup(const char *src);
@@ -405,14 +396,14 @@ char	*my_strndup(const char *src, int size);
 char	*revstr(char *str);
 
 /* Returns the size of a NULL terminated tab */
-int	tablen(char **tabptr);
+int	tablen(char **tab);
 
 /* Put a tab using \n for each lines */
-void	put_tab(char **tabptr);
+void	put_tab(char **tab);
 
 /* Puts each line of tab till NULL preceded by <start> and followed by <end> */
 void	put_tabw(const char *start,
-		      char **tabptr,
+		      char **tab,
 		      const char *end);
 
 #ifdef __cplusplus
