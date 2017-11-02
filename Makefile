@@ -19,6 +19,9 @@ SRCS		+= src/display_line.c
 SRCS		+= src/set_getlineshell.c
 SRCS		+= src/builtins.c
 SRCS		+= src/shortcuts.c
+SRCS		+= src/real_cursor_pos.c
+SRCS		+= src/insert_inline.c
+SRCS		+= src/arrow.c
 
 OBJ		= $(SRCS:.c=.o)
 

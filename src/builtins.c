@@ -20,6 +20,9 @@ static void		init_ptr_tab(fction_t ptr_tab[])
   __add_ptr("\f\0\0\0", &ptr_tab[0], ctrl_l);
   __add_ptr("\04\0\0\0", &ptr_tab[1], ctrl_d);
   __add_ptr("\x7f\0\0\0", &ptr_tab[2], kbackspace);
+  __add_ptr("\x1B[C\0", &ptr_tab[3], right_arrow);
+  __add_ptr("\x1B[D\0", &ptr_tab[4], left_arrow);
+  __add_ptr("\n\0\0\0", &ptr_tab[5], enter);
 }
 
 int			builtins(gls_t *gls)

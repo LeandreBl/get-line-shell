@@ -5,7 +5,7 @@
 ** Login   <lblanchard@epitech.net>
 ** 
 ** Started on  Thu Oct 13 09:19:01 2016 Leandre Blanchard
-** Last update Wed Oct 25 21:04:35 2017 Léandre Blanchard
+** Last update Wed Nov  1 23:32:16 2017 Léandre Blanchard
 */
 
 #ifndef MY_H_
@@ -368,7 +368,7 @@ int	my_kstrlen(const char *str, char k);
 int	my_getnbr(const char *);
 
 /* NULL proof strcpy */
-int	my_strcpy(char *, const char *);
+int	my_strcpy(char *dest, const char *src);
 
 /* NULL proff strncpy */
 char	*my_strncpy(char *, const char *, int);

@@ -21,13 +21,13 @@ static void		wipedout_line(gls_t *gls)
 
   if (ioctl(1, TIOCGWINSZ, &win) < 0)
     return;
-  i = my_strlen(gls->line) + 15;
+  i = real_str_size(gls->line, -1) + 15;
   while (i < win.ws_col)
   {
     write(1, " ", 1);
     ++i;
   }
-  while (i > gls->curset.cursor)
+  while (i > gls->curset.cursor + 15)
   {
     write(1, "\b", 1);
     --i;
@@ -39,7 +39,7 @@ static void		set_beginning(gls_t *gls)
   int			i;
 
   i = 0;
-  while (i < gls->curset.cursor)
+  while (i < gls->curset.cursor + 15)
   {
     write(1, "\b", 1);
     ++i;

@@ -21,7 +21,7 @@ int			main(void)
 
   set_getlineshell_term(&old);
   getlineshell(&line, NULL);
-  mprintf("%s\n", line);
+  mprintf("\nstr : %s\n", line);
   ioctl(0, TCSETS, &old);
   sfree(&line);
   return (0);

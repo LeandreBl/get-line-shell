@@ -14,7 +14,7 @@
 # define DEFAULT_TMP_SHFILE	("shfile.tmp")
 # define DEFAULT_LINE_SIZE	(256)
 # define DEFAULT_READ_SIZE	(3)
-# define NB_BUILTINS		(3)
+# define NB_BUILTINS		(6)
 # define DONE			(1)
 
 struct			curset_s
@@ -44,11 +44,17 @@ struct			fction_s
 typedef struct gls_s gls_t;
 typedef struct fction_s fction_t;
 
+int		real_str_size(const char *str, int to);
+int		real_cursor_pos(gls_t *gls);
 int		set_getlineshell_term(struct termios *old);
 void		display_line(gls_t *gls);
 int		builtins(gls_t *gls);
 int		ctrl_l(gls_t *gls);
 int		ctrl_d(gls_t *gls);
 int		kbackspace(gls_t *gls);
+int		enter(gls_t *gls);
+void		insert_inline(gls_t *gls);
+int		left_arrow(gls_t *gls);
+int		right_arrow(gls_t *gls);
 
 #endif /* !GETLINESHELL_H_ */

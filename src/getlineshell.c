@@ -14,6 +14,7 @@ static int		set_gls(char **lineptr, char **hist, gls_t *gls)
 {
   if (lineptr == NULL)
     return (-1);
+  zeros(gls->buffer, DEFAULT_READ_SIZE + 1);
   gls->lineptr = lineptr;
   gls->line = my_calloc(DEFAULT_LINE_SIZE);
   gls->curset.cmds = hist;
@@ -50,23 +51,19 @@ int			getlineshell(char **lineptr, char **hist)
 
   if (set_gls(lineptr, hist, &gls))
     return (-1);
-  while (nb_of(gls.line, '\n') == 0)
+  while (nb_of(gls.buffer, '\n') == 0)
   {
     if (read_next_(&gls) == 1)
       break;
     if (adjust_alloc_size(&gls) == -1)
       return (-1);
     if (!builtins(&gls))
-    {
-      my_strcat(gls.line, gls.buffer);
-      gls.curset.cursor += gls.rd;
-    }
+      insert_inline(&gls);
     if (gls.line == NULL)
       return (0);
     display_line(&gls);
   }
   *lineptr = gls.line;
-  shift_right(gls.line, 1);
   gls.n = my_strlen(gls.line);
   return (gls.n + 1);
 }
