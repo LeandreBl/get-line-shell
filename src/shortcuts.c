@@ -38,15 +38,12 @@ int		ctrl_d(gls_t *gls)
 
 int		kbackspace(gls_t *gls)
 {
-  int		rpos;
-
-  rpos = real_cursor_pos(gls);
   if (gls->curset.cursor > 0)
   {
-    shift_left(gls->line + rpos - 1, 1);
-    if (gls->line[rpos - 1] < 0)
+    shift_left(gls->line + gls->curset.cursor - 1, 1);
+    if (gls->line[gls->curset.cursor - 1] < 0)
     {
-      shift_left(gls->line + rpos - 1, 1);
+      shift_left(gls->line + gls->curset.cursor - 1, 1);
       --gls->curset.cursor;
     }
     --gls->curset.cursor;

@@ -9,13 +9,29 @@
 
 #include "my.h"
 #include "defines.h"
+#include <string.h>
+
+static void	shift(char *str, int size)
+{
+  int		i;
+  int		nb;
+
+  nb = 0;
+  while (nb < size)
+  {
+    i = my_strlen(str);
+    while (i > 0)
+    {
+      str[i] = str[i - 1];
+      --i;
+    }
+    ++nb;
+  }
+}
 
 void		insert_inline(gls_t *gls)
 {
-  int		rpos;
-
-  rpos = real_cursor_pos(gls);
-  my_strncpy(gls->line + rpos + gls->rd, gls->line + rpos, my_strlen(gls->line + rpos));
-  my_strncpy(gls->line + rpos, gls->buffer, gls->rd);
-  ++gls->curset.cursor;
+  shift(gls->line + gls->curset.cursor, gls->rd);
+  my_strncpy(gls->line + gls->curset.cursor, gls->buffer, gls->rd);
+  gls->curset.cursor += gls->rd;
 }
